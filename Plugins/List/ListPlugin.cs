@@ -36,19 +36,20 @@ namespace ListPlugin
             }
             else if (input.Message.StartsWith("add"))
             {
-                var str = input.Message.Substring("add".Length).Trim();
+                var s= input.Message.ToLower();
+                var str =s.Substring("add".Length).Trim();
                 list.Add(str);
-
                 var data = new PersistentDataStructure(list);
-
                 return new PluginOutput($"New task: {str}", JsonSerializer.Serialize(data));
             }
             else if (input.Message.StartsWith("delete"))
             {   
-                list.RemoveAt(list.Count - 1);
+            
+                var str = input.Message.Substring("delete".Length).Trim();
+                list.RemoveAt(int.Parse(str)-1);
                 var data = new PersistentDataStructure(list);
-
-                return new PluginOutput($"Delete last task");
+                return new PluginOutput($"Delete last task", JsonSerializer.Serialize(data));
+             
             }
             else if (input.Message == "list")
             {
