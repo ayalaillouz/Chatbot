@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using QuadraticEquation;
 
 namespace Infrastructure
 {
@@ -49,11 +50,17 @@ namespace Infrastructure
             {
                 return new CountWordPlugin();
             }
-            else
 
+            else if (id == QuadraticEquationPlugin._Id)
+            {
+                return new QuadraticEquationPlugin();
+
+            }
+            else
             {
                 throw new NotImplementedException();
             }
+
         }
 
         static public readonly IReadOnlyList<string> plugins = new List<string>
@@ -64,7 +71,8 @@ namespace Infrastructure
             EchoPlugin._Id,
             ListPlugin.ListPlugin._Id,
             CountTheWordsPlugin._Id,
-            CountWordPlugin._Id
+            CountWordPlugin._Id,
+            QuadraticEquationPlugin._Id
         };
     }
 }
